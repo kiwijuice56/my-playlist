@@ -10,14 +10,14 @@
 </head>
 <body>
     <h1>my-playlist</h1>
-    <p>minimal youtube playlist controller. configured using url parameters. if you have many playlists, you can configure a url and save it as a bookmark for easy playing</p>
+    <p>minimal youtube playlist controller. configured using url parameters. if you have many playlists, you can configure a url and save it as a bookmark for easy playing.</p>
     <h2>parameters</h2>
-    <p>add the parameters below to the url and refresh the page, like this: <code>https://kiwijuice56.github.io/my-playlist/?id=PL8F6B0753B2CCA128?shuffle=1</code></p>
+    <p>add the parameters below to the url and refresh the page, like this: <code>https://kiwijuice56.github.io/my-playlist/?id=PL8F6B0753B2CCA128&shuffle=1</code>. afterwards, you can play, pause, and skip using keyboard controls.</p>
     <ul>
-        <li><code>id=[PLAYLIST_ID]</code>: plays the given playlist. locate <code>PLAYLIST_ID</code> by opening the playlist on youtube and copying the string after <code>?list=</code></li>
+        <li><code>id=[PLAYLIST_ID]</code>: plays the given playlist. locate <code>PLAYLIST_ID</code> by opening the playlist on youtube and copying the text after <code>?list=</code></li>
         <li><code>shuffle=1</code>: shuffles the given playlist</li>
     </ul>
-    <div style=" top: 0; left: 0; width: 480; height: 270;" id='player'></div>
+    <div style=" top: 0; left: 0; width: 200; height: 200;" id='player'></div>
 </body>
 
 <script>
@@ -27,7 +27,6 @@
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
     var player;
-    var videoPlayed = false;
 
     function onYouTubeIframeAPIReady() {
         const params = new URLSearchParams(window.location.search); 
@@ -54,20 +53,8 @@
     function onPlayerReady(event) {
         const params = new URLSearchParams(window.location.search); 
         const shuffle = params.get("shuffle"); 
-        if (shuffle == 1) {
-            player.setShuffle(true); 
-            player.playVideoAt(0); 
-            player.play
-        } else {
-            player.setShuffle(false); 
-            if (videoPlayed) {
-                player.nextVideo();
-            } else {
-                player.playVideoAt(0); 
-            }
-        }
-
-        videoPlayed = true;
+        player.setShuffle(shuffle == 1);
+        player.playVideoAt(0); 
     }       
     function onPlayerStateChange(event) {
         const player = event.target;
