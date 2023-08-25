@@ -3,23 +3,28 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        body {margin: 5% auto; background: #f2f2f2; color: #444444; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.8; text-shadow: 0 1px 0 #ffffff; max-width: 73%;}
+        body {margin: auto; background: #f2f2f2; color: #444444; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.8; text-shadow: 0 1px 0 #ffffff; padding-top: 12px; }
         code {background: white;}
+		button {flex: 1; height: 48px; color: #444444;}
+		#help {max-width: 73%; margin: auto;}
+		#video {margin: auto; width: 480px;}
+		#player {width: 480px; height: 270px; display: block; padding-bottom: 12px;}
+		#buttonHolder {display: flex; padding-left: 12px; padding-right: 12px;}
+		#back {margin-right: 12px;}
     </style>
     <title>my-playlist</title>
 </head>
 <body>
-    <h1>my-playlist</h1>
-    <p>minimal youtube playlist controller. configured using url parameters. if you have many playlists, you can configure a url and save it as a bookmark for easy playing.</p>
-    <h2>parameters</h2>
-    <p>add the parameters below to the url and refresh the page, like this: <code>https://kiwijuice56.github.io/my-playlist/?id=PL8F6B0753B2CCA128&shuffle=1</code>. afterwards, you can play, pause, and skip using keyboard controls.</p>
-    <ul>
-        <li><code>id=[PLAYLIST_ID]</code>: plays the given playlist. locate <code>PLAYLIST_ID</code> by opening the playlist on youtube and copying the text after <code>?list=</code></li>
-        <li><code>shuffle=1</code>: shuffles the given playlist</li>
-    </ul>
-    <div style=" top: 0; left: 0; width: 200; height: 200;" id='player'></div>
+	<div id='video'>
+		<div id='player'></div>
+		<div id='buttonHolder'><button id='back' onclick="back()"><< back</button> <button id='next' onclick="next()"> next >></button> </div>
+	</div>
+	<div id='help'>
+		<h1>my-playlist</h1>
+		<p>a minimal youtube playlist controller. copy this url: <code>https://kiwijuice56.github.io/my-playlist/?id=[PLAYLIST_ID]&shuffle=1</code> and replace <code>[PLAYLIST_ID]</code> with the text after <code>list=</code> in your youtube playlist url. remove <code>shuffle=1</code> to disable shuffling. after entering your url, you can play, pause, and skip using keyboard controls or the buttons below the video. you can also bookmark the url to save your settings.</p>
+		<p>zero data is collected from users. this website was made to remove the bloat of the youtube website and fix bugs with shuffling. the back and next buttons were added for mobile support, as these buttons are missing on firefox android for some reason.</p>
+	</div>
 </body>
-
 <script>
     var tag = document.createElement('script');
     tag.src = "https://www.youtube.com/iframe_api";
@@ -57,7 +62,12 @@
         player.playVideoAt(0); 
     }       
     function onPlayerStateChange(event) {
-        const player = event.target;
     }
- </script>
- </html>
+	function next() {
+		player.nextVideo();
+	}
+	function back() {
+		player.previousVideo();
+	}
+</script>
+</html>
