@@ -35,7 +35,9 @@
 
     function onYouTubeIframeAPIReady() {
         const params = new URLSearchParams(window.location.search); 
-        const id = params.get("id"); 
+		const mix = params.get("mix");
+        const id = mix ? "RDMM" : params.get("id"); 
+		
 
         player = new YT.Player('player', {
             playerVars: {
@@ -47,6 +49,8 @@
                 rel: 0,
                 'listType': 'playlist',
                 'list': id, 
+				'v': 'Mvvsa5HAJiI',
+				'start_radio': 1,
             },
 
             events: {
