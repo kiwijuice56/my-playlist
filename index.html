@@ -3,9 +3,13 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        body {margin: auto; background: #f2f2f2; color: #444444; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.8; text-shadow: 0 1px 0 #ffffff; padding-top: 12px; }
-        code {background: white;}
-		button {flex: 1; height: 48px; color: #444444;}
+        body {margin: auto; background: #1c1c1b; color: #ababa6; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.8; padding-top: 12px;}
+        code {background: #0f0e0e;}
+		
+		button {flex: 1; height: 48px; color: #666; background-color: #0f0e0e; border: none; border-radius: 4px;}
+		button:hover {color: #555; background-color: #292928;}
+		button:active {color: #666; background-color: #0d0d0c;}
+		
 		#help {max-width: 73%; margin: auto;}
 		#video {margin: auto; width: 480px;}
 		#player {width: 480px; height: 270px; display: block; padding-bottom: 12px;}
@@ -19,10 +23,6 @@
 		<div id='player'></div>
 		<div id='buttonHolder'><button id='back' onclick="back()"><< back</button> <button id='next' onclick="next()"> next >></button> </div>
 	</div>
-	
-	<iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?list=RDMM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
-	
-	</iframe>
 	
 	<div id='help'>
 		<h1>my-playlist</h1>
@@ -40,9 +40,7 @@
 
     function onYouTubeIframeAPIReady() {
         const params = new URLSearchParams(window.location.search); 
-		const mix = params.get("mix");
         const id = params.get("id"); 
-		
 
         player = new YT.Player('player', {
             playerVars: {
