@@ -19,6 +19,11 @@
 		<div id='player'></div>
 		<div id='buttonHolder'><button id='back' onclick="back()"><< back</button> <button id='next' onclick="next()"> next >></button> </div>
 	</div>
+	
+	<iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?list=RDMM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+	
+	</iframe>
+	
 	<div id='help'>
 		<h1>my-playlist</h1>
 		<p>a minimal youtube playlist controller. copy this url: <code>https://kiwijuice56.github.io/my-playlist/?id=[PLAYLIST_ID]&shuffle=1</code> and replace <code>[PLAYLIST_ID]</code> with the text after <code>list=</code> in your youtube playlist url. remove <code>shuffle=1</code> to disable shuffling. after entering your url, you can play, pause, and skip using keyboard controls or the buttons below the video. you can also bookmark the url to save your settings.</p>
@@ -36,7 +41,7 @@
     function onYouTubeIframeAPIReady() {
         const params = new URLSearchParams(window.location.search); 
 		const mix = params.get("mix");
-        const id = mix ? "RDMM" : params.get("id"); 
+        const id = params.get("id"); 
 		
 
         player = new YT.Player('player', {
@@ -49,7 +54,6 @@
                 rel: 0,
                 'listType': 'playlist',
                 'list': id, 
-				'start_radio': 1,
             },
 
             events: {
