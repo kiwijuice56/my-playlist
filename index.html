@@ -3,18 +3,22 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        body {margin: auto; background: #1c1c1b; color: #ababa6; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.8; padding-top: 12px;}
+        body {margin: auto; background: #1f1f1f; color: #ababa6; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.9; padding-top: 12px; width: 100%;}
         code {background: #0f0e0e;}
 		
-		button {flex: 1; height: 48px; color: #666; background-color: #0f0e0e; border: none; border-radius: 4px;}
-		button:hover {color: #555; background-color: #292928;}
+		button {flex: 1; height: 48px; color: #ababa6; background-color: #0c0c0c; border: none; border-radius: 4px;}
+		button:hover {color: #FFF; background-color: #292928;}
 		button:active {color: #666; background-color: #0d0d0c;}
 		
 		#help {max-width: 73%; margin: auto;}
 		#video {margin: auto; width: 480px;}
 		#player {width: 480px; height: 270px; display: block; padding-bottom: 12px;}
 		#buttonHolder {display: flex; padding-left: 12px; padding-right: 12px;}
+		
 		#back {margin-right: 12px;}
+		footer {padding-bottom: 1em;}
+		
+		a {color: #aaaaa6;}
     </style>
     <title>my-playlist</title>
 </head>
@@ -26,8 +30,11 @@
 	
 	<div id='help'>
 		<h1>my-playlist</h1>
-		<p>a minimal youtube playlist controller. copy this url: <code>https://kiwijuice56.github.io/my-playlist/?id=[PLAYLIST_ID]&shuffle=1</code> and replace <code>[PLAYLIST_ID]</code> with the text after <code>list=</code> in your youtube playlist url. remove <code>shuffle=1</code> to disable shuffling. after entering your url, you can play, pause, and skip using keyboard controls or the buttons below the video. you can also bookmark the url to save your settings.</p>
-		<p>zero data is collected from users. this website was made to remove the bloat of the youtube website and fix bugs with shuffling. the back and next buttons were added for mobile support, as these buttons are missing on firefox android for some reason.</p>
+		<p>a minimal youtube playlist controller. copy this url: <code>https://kiwijuice56.github.io/my-playlist/?id=[PLAYLIST_ID]&shuffle=1</code> and replace <code>[PLAYLIST_ID]</code> with the text after <code>list=</code> in your youtube playlist url. remove <code>shuffle=1</code> to disable shuffling. after entering your url, you can play, pause, and skip using keyboard controls or the buttons below the video. you can also bookmark the url to save your settings. enable <code>desktop site</code> on firefox mobile to stop audio from automatically pausing when switching tabs. </p>
+		<p>zero data is collected from users. this website was made to remove the bloat of the youtube website for playlists and to fix the broken shuffle feature. the back and next buttons were added for mobile support, as these buttons are missing on firefox mobile's youtube player.</p>
+		<footer>
+			<a href="https://github.com/kiwijuice56">github</a>
+		</footer>
 	</div>
 </body>
 <script>
