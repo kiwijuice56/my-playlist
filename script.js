@@ -1,4 +1,5 @@
 function getUrl(pagetoken) {
+	const params = new URLSearchParams(window.location.search); 
 	var pt = (typeof pagetoken === "undefined") ? "" :`&pageToken=${pagetoken}`,
 	mykey = "AIzaSyDdHKpCM1frjPOPAN96rQ0vUwTtJ14L9qY",
 	playListID = params.get("id"); 
