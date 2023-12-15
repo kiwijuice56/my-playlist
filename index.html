@@ -23,10 +23,7 @@
     <title>my-playlist</title>
 </head>
 <body>
-	<div id='video'>
-		<div id='player'></div>
-		<div id='buttonHolder'><button id='back' onclick="back()"><< back</button> <button id='next' onclick="next()"> next >></button> </div>
-	</div>
+	<button onclick="trySampleRequest();">Try sample request</button>
 	
 	<div id='help'>
 		<h1>my-playlist</h1>
@@ -36,50 +33,81 @@
 			<a href="https://github.com/kiwijuice56">github</a>
 		</footer>
 	</div>
+	<script>
+	  var YOUR_CLIENT_ID = '69191214053-g5ojq38n185e9h4tis7afigvva5hh3jv.apps.googleusercontent.com';
+	  var YOUR_REDIRECT_URI = 'https://kiwijuice56.github.io/my-playlist/';
+	  var fragmentString = location.hash.substring(1);
+
+	  // Parse query string to see if page request is coming from OAuth 2.0 server.
+	  var params = {};
+	  var regex = /([^&=]+)=([^&]*)/g, m;
+	  while (m = regex.exec(fragmentString)) {
+		params[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
+	  }
+	  if (Object.keys(params).length > 0) {
+		localStorage.setItem('oauth2-test-params', JSON.stringify(params) );
+		if (params['state'] && params['state'] == 'try_sample_request') {
+		  trySampleRequest();
+		}
+	  }
+
+	  // If there's an access token, try an API request.
+	  // Otherwise, start OAuth 2.0 flow.
+	  function trySampleRequest() {
+		var params = JSON.parse(localStorage.getItem('oauth2-test-params'));
+		if (params && params['access_token']) {
+		  var xhr = new XMLHttpRequest();
+		  xhr.open('GET',
+			  'https://www.googleapis.com/youtube/v3/playlists?part=contentDetails&id=PL9ujewBhQLIvJOmZn9lWCyBSaLbDgdqmr' +
+			  'access_token=' + params['access_token']);
+		  xhr.onreadystatechange = function (e) {
+			if (xhr.readyState === 4 && xhr.status === 200) {
+			  console.log(xhr.response);
+			} else if (xhr.readyState === 4 && xhr.status === 401) {
+			  // Token invalid, so prompt for user permission.
+			  oauth2SignIn();
+			}
+		  };
+		  xhr.send(null);
+		  console.log("success");
+		} else {
+		  oauth2SignIn();
+		}
+	  }
+
+	  /*
+	   * Create form to request access token from Google's OAuth 2.0 server.
+	   */
+	  function oauth2SignIn() {
+		// Google's OAuth 2.0 endpoint for requesting an access token
+		var oauth2Endpoint = 'https://accounts.google.com/o/oauth2/v2/auth';
+
+		// Create element to open OAuth 2.0 endpoint in new window.
+		var form = document.createElement('form');
+		form.setAttribute('method', 'GET'); // Send as a GET request.
+		form.setAttribute('action', oauth2Endpoint);
+
+		// Parameters to pass to OAuth 2.0 endpoint.
+		var params = {'client_id': YOUR_CLIENT_ID,
+					  'redirect_uri': YOUR_REDIRECT_URI,
+					  'scope': 'https://www.googleapis.com/auth/youtube.force-ssl',
+					  'state': 'try_sample_request',
+					  'include_granted_scopes': 'true',
+					  'response_type': 'token'};
+
+		// Add form parameters as hidden input values.
+		for (var p in params) {
+		  var input = document.createElement('input');
+		  input.setAttribute('type', 'hidden');
+		  input.setAttribute('name', p);
+		  input.setAttribute('value', params[p]);
+		  form.appendChild(input);
+		}
+
+		// Add form to page and submit it to open the OAuth 2.0 endpoint.
+		document.body.appendChild(form);
+		form.submit();
+	  }
+	</script>
 </body>
-<script>
-    var tag = document.createElement('script');
-    tag.src = "https://www.youtube.com/iframe_api";
-    var firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-    var player;
-
-    function onYouTubeIframeAPIReady() {
-        const params = new URLSearchParams(window.location.search); 
-        const id = params.get("id"); 
-
-        player = new YT.Player('player', {
-            playerVars: {
-                color: 'white',
-                autoplay: 1,
-                loop: 0,
-                controls: 1,
-                frameborder: 0,
-                rel: 0,
-                'listType': 'playlist',
-                'list': id, 
-            },
-
-            events: {
-                'onReady': onPlayerReady,
-                'onStateChange': onPlayerStateChange
-            }
-        });
-    }  
-    function onPlayerReady(event) {
-        const params = new URLSearchParams(window.location.search); 
-        const shuffle = params.get("shuffle"); 
-        player.setShuffle(shuffle == 1);
-        player.playVideoAt(0); 
-    }       
-    function onPlayerStateChange(event) {
-    }
-	function next() {
-		player.nextVideo();
-	}
-	function back() {
-		player.previousVideo();
-	}
-</script>
 </html>
