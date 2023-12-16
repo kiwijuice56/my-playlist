@@ -36,7 +36,7 @@ function onYouTubeIframeAPIReady() {
 
 function onPlayerReady() {
 	console.log(urlList);
-	player.cuePlaylist(urlList);
+	player.loadPlaylist(urlList);
 }
 
 function shuffleArray(array) {
