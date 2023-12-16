@@ -22,8 +22,24 @@ function onYouTubeIframeAPIReady() {
 			frameborder: 0,
 			'listType': 'playlist',
 		},
+		events: {
+			'onReady': onPlayerReady,
+		}
 	});
 }  
+
+function onPlayerReady() {
+	if (localStorage.hasOwnProperty(playlistId)) {
+		console.log("used storage");
+		urlList = JSON.parse(localStorage.getItem(playlistId));
+	} else {
+		console.log("used api");
+		loadUrlList();
+	}
+	console.log(urlList);
+	shuffleArray(urlList);
+	player.loadPlaylist(urlList);
+}
 
 function shuffleArray(array) {
     for (var i = array.length - 1; i > 0; i--) {
@@ -59,10 +75,6 @@ function responseHandler(response) {
 	} else {
 		// Finished loading playlist
 		localStorage.setItem(playlistId, JSON.stringify(urlList));
-		console.log("used api");
-		console.log(urlList);
-		shuffleArray(urlList);
-		player.loadPlaylist(urlList);
 	}
 }
 
@@ -70,13 +82,3 @@ function refresh() {
 	localStorage.clear();
 	location.reload();
 }
-
-if (localStorage.hasOwnProperty(playlistId)) {
-	urlList = JSON.parse(localStorage.getItem(playlistId));
-	console.log("used storage");
-	console.log(urlList);
-	shuffleArray(urlList);
-	player.loadPlaylist(urlList);
-}
-
-loadUrlList();
