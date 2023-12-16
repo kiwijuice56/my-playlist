@@ -37,17 +37,17 @@ function onYouTubeIframeAPIReady() {
 
 function onPlayerReady() {
 	console.log(urlList);
-	player.playVideoAt(Math.floor(Math.random()*items.length));
+	player.playVideoAt(Math.floor(Math.random()*urlList.length));
 }
 
 function onPlayerStateChange(event) {
-	player.playVideoAt(Math.floor(Math.random()*items.length));
+	player.playVideoAt(Math.floor(Math.random()*urlList.length));
 }
 function next() {
-	player.playVideoAt(Math.floor(Math.random()*items.length));
+	player.playVideoAt(Math.floor(Math.random()*urlList.length));
 }
 function back() {
-	player.playVideoAt(Math.floor(Math.random()*items.length));
+	player.playVideoAt(Math.floor(Math.random()*urlList.length));
 }
 
 function shuffleArray(array) {
