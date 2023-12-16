@@ -47,9 +47,6 @@ function onPlayerReady() {
 	console.log(urlList);
 	shuffleArray(urlList);
 	player.loadPlaylist(urlList);
-	setTimeout(function() {
-		player.loadPlaylist(urlList);
-	}, 500);
 }
  
 function getUrl(pagetoken) {
