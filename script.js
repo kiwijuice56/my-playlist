@@ -13,6 +13,8 @@ function onYouTubeIframeAPIReady() {
 			color: 'white',
 			autoplay: 1,
 			loop: 0,
+			controls: 1,
+			disablekb: 1,
 			controls: 0,
 			frameborder: 0,
 			rel: 0, 
@@ -49,15 +51,7 @@ function responseHandler(response) {
 	}
 }
 
-
-document.addEventListener('keydown', function(event) {
-    if(event.keyCode == 37) {
-        player.loadVideoById(urlList[Math.floor(Math.random() * urlList.length)]);
-    }
-
-});
-
-navigator.mediaSession.setActionHandler('play', function() {
+navigator.mediaSession.setActionHandler('nexttrack', function() {
 	player.loadVideoById(urlList[Math.floor(Math.random() * urlList.length)]);
 });
 
