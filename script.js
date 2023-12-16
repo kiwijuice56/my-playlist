@@ -46,14 +46,14 @@ function shuffleArray(array) {
 
 function onPlayerReady() {
 	shuffleArray(urlList);
-	var sample = urlList.slice(0, 16);
+	var sample = urlList.slice(0, 8);
 	player.loadPlaylist(sample);
 }
 
 function onStateChanged() {
-	if (player.getPlaylistIndex() == 15) {
+	if (player.getPlaylistIndex() == 4) {
 		shuffleArray(urlList);
-		var sample = urlList.slice(0, 16);
+		var sample = urlList.slice(0, 8);
 		player.loadPlaylist(sample);
 		player.playVideoAt(0);
 	}
