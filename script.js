@@ -34,7 +34,9 @@ function onYouTubeIframeAPIReady() {
 function onPlayerReady() {
 	console.log(urlList);
 	shuffleArray(urlList);
-	player.loadPlaylist(urlList);
+	setTimeout(function() {
+		player.loadPlaylist(urlList);
+	}, 3000); 
 }
 
 function shuffleArray(array) {
