@@ -16,8 +16,6 @@ function onYouTubeIframeAPIReady() {
 			autoplay: 1,
 			loop: 0,
 			controls: 1,
-			disablekb: 1,
-			controls: 0,
 			frameborder: 0,
 			rel: 0, 
 			'listType': 'playlist',
