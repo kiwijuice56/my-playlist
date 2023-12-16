@@ -38,7 +38,7 @@ function getUrl(pagetoken) {
 	const token = (typeof pagetoken === "undefined") ? "" :`&pageToken=${pagetoken}`;
 	// Yes... this is really just public. You can generate your own for free, so be nice!
 	const key = "AIzaSyDdHKpCM1frjPOPAN96rQ0vUwTtJ14L9qY";
-	return`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=${playListID}&key=${key}${token}`;
+	return`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=${playlistId}&key=${key}${token}`;
 }
 
 function loadUrlList(nextPageToken) {
