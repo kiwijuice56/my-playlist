@@ -25,7 +25,9 @@ function onYouTubeIframeAPIReady() {
 }  
 
 function createPlayer() {
-	shuffleArray(urlList);
+	const sample = urlList.slice(0, 64);
+	shuffleArray(sample);
+	console.log(sample);
 	player = new YT.Player('player', {
 		playerVars: {
 			color: 'white',
@@ -35,7 +37,7 @@ function createPlayer() {
 			frameborder: 0,
 			rel: 0,
 			enablejsapi: 1,
-			'playlist': urlList.slice(0,128).join(','),
+			'playlist': sample.join(','),
 			origin: 'https://kiwijuice56.github.io/my-playlist/',
 		},
 		events: {
