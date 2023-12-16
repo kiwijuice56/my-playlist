@@ -25,7 +25,7 @@ function onYouTubeIframeAPIReady() {
 			frameborder: 0,
 			rel: 0,
 			enablejsapi: 1,
-			'listType': 'playlist',
+			origin: 'https://kiwijuice56.github.io/my-playlist/',
 		},
 		events: {
 			'onReady': onPlayerReady,
