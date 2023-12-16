@@ -20,6 +20,9 @@ function onYouTubeIframeAPIReady() {
 		playerVars: {
 			color: 'white',
 			frameborder: 0,
+			playerVars: {
+				html5: 1
+			},
 			'listType': 'playlist',
 		},
 		events: {
