@@ -39,7 +39,6 @@ function createPlayer() {
 			enablejsapi: 1,
 			host: 'https://www.youtube-nocookie.com',
 			'playlist': sample.join(','),
-			origin: 'https://kiwijuice56.github.io/my-playlist/',
 		},
 		events: {
 			'onReady': onPlayerReady,
