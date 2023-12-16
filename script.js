@@ -29,13 +29,6 @@ function onYouTubeIframeAPIReady() {
 }  
 
 function onPlayerReady() {
-	if (localStorage.hasOwnProperty(playlistId)) {
-		console.log("used storage");
-		urlList = JSON.parse(localStorage.getItem(playlistId));
-	} else {
-		console.log("used api");
-		loadUrlList();
-	}
 	console.log(urlList);
 	shuffleArray(urlList);
 	player.loadPlaylist(urlList);
@@ -81,4 +74,12 @@ function responseHandler(response) {
 function refresh() {
 	localStorage.clear();
 	location.reload();
+}
+
+if (localStorage.hasOwnProperty(playlistId)) {
+	console.log("used storage");
+	urlList = JSON.parse(localStorage.getItem(playlistId));
+} else {
+	console.log("used api");
+	loadUrlList();
 }
