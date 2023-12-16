@@ -46,7 +46,7 @@ function shuffleArray(array) {
 function onPlayerReady() {
 	console.log(urlList);
 	shuffleArray(urlList);
-	player.loadPlaylist(urlList);
+	player.loadPlaylist(urlList.slice(0, 200));
 }
  
 function getUrl(pagetoken) {
@@ -66,9 +66,6 @@ function loadUrlList(nextPageToken) {
 
 function responseHandler(response) {
 	for (const idx in response.items) {
-		if (urlList.length == 200) {
-			return;
-		}
 		urlList.push(response.items[idx].snippet.resourceId.videoId);
 	}
 	
