@@ -16,6 +16,15 @@ var player;
 
 // Initialize the player object 
 function onYouTubeIframeAPIReady() {
+	if (localStorage.hasOwnProperty(playlistId)) {
+		urlList = JSON.parse(localStorage.getItem(playlistId));
+		createPlayer();
+	} else {
+		loadUrlList();
+	}
+}  
+
+function createPlayer() {
 	shuffleArray(urlList);
 	player = new YT.Player('player', {
 		playerVars: {
@@ -34,8 +43,7 @@ function onYouTubeIframeAPIReady() {
 			'onStateChange': onStateChanged,
 		}
 	});
-}  
-
+}
 
 function shuffleArray(array) {
     for (var i = array.length - 1; i > 0; i--) {
@@ -57,8 +65,8 @@ function onStateChanged() {
 function getUrl(pagetoken) {
 	const token = (typeof pagetoken === "undefined") ? "" :`&pageToken=${pagetoken}`;
 	// Yes... this is really just public. You can generate your own for free, so be nice!
-	const key = "AIzaSyDdHKpCM1frjPOPAN96rQ0vUwTtJ14L9qY";
-	return`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=${playlistId}&key=${key}${token}`;
+	const k = "AIzaSyDdHKpCM1frjPOPAN96rQ0vUwTtJ14L9qY";
+	return`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=${playlistId}&key=${k}${token}`;
 }
 
 function loadUrlList(nextPageToken) {
@@ -79,18 +87,20 @@ function responseHandler(response) {
 	} else {
 		// Finished loading playlist
 		localStorage.setItem(playlistId, JSON.stringify(urlList));
+		createPlayer();
 	}
 }
+
 
 function refresh() {
 	localStorage.clear();
 	location.reload();
 }
 
-if (localStorage.hasOwnProperty(playlistId)) {
-	console.log("used storage");
-	urlList = JSON.parse(localStorage.getItem(playlistId));
-} else {
-	console.log("used api");
-	loadUrlList();
+function next() {
+	player.nextVideo();
+}
+
+function back() {
+	player.previousVideo();
 }
