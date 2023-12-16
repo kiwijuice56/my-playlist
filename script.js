@@ -16,6 +16,7 @@ var player;
 
 // Initialize the player object 
 function onYouTubeIframeAPIReady() {
+	shuffleArray(urlList);
 	player = new YT.Player('player', {
 		playerVars: {
 			color: 'white',
@@ -25,7 +26,7 @@ function onYouTubeIframeAPIReady() {
 			frameborder: 0,
 			rel: 0,
 			enablejsapi: 1,
-			'playlist': urlList.slice(0, 128).join(','),
+			'playlist': urlList.join(','),
 			origin: 'https://kiwijuice56.github.io/my-playlist/',
 		},
 		events: {
