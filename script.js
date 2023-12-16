@@ -55,7 +55,6 @@ function onStateChanged() {
 		shuffleArray(urlList);
 		var sample = urlList.slice(0, 8);
 		player.loadPlaylist(sample);
-		player.playVideoAt(0);
 	}
 	
 }
