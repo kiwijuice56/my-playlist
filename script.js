@@ -29,6 +29,7 @@ function onYouTubeIframeAPIReady() {
 		},
 		events: {
 			'onReady': onPlayerReady,
+			'onStateChange': onStateChanged,
 		}
 	});
 }  
@@ -44,10 +45,19 @@ function shuffleArray(array) {
 }
 
 function onPlayerReady() {
-	console.log(urlList);
 	shuffleArray(urlList);
-	var sample = urlList.slice(0, 64);
+	var sample = urlList.slice(0, 16);
 	player.loadPlaylist(sample);
+}
+
+function onStateChanged() {
+	if (player.getPlaylistIndex() == 15) {
+		shuffleArray(urlList);
+		var sample = urlList.slice(0, 16);
+		player.loadPlaylist(sample);
+		player.playVideoAt(0);
+	}
+	
 }
  
 function getUrl(pagetoken) {
