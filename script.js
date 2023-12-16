@@ -24,6 +24,7 @@ function onYouTubeIframeAPIReady() {
 			controls: 1,
 			frameborder: 0,
 			rel: 0,
+			enablejsapi: 1,
 			'listType': 'playlist',
 		},
 		events: {
