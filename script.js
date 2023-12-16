@@ -86,3 +86,9 @@ if (localStorage.hasOwnProperty(playlistId)) {
 	console.log("used api");
 	loadUrlList();
 }
+
+if (window.YT) {
+    // Apparently, the API was ready before this script was executed.
+    // Manually invoke the function
+    onYouTubePlayerAPIReady();
+}
