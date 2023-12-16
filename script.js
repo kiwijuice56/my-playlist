@@ -30,24 +30,13 @@ function onYouTubeIframeAPIReady() {
 		},
 		events: {
 			'onReady': onPlayerReady,
-			'onStateChange': onPlayerStateChange
 		}
 	});
 }  
 
 function onPlayerReady() {
 	console.log(urlList);
-	player.playVideoAt(Math.floor(Math.random()*urlList.length));
-}
-
-function onPlayerStateChange(event) {
-	player.playVideoAt(Math.floor(Math.random()*urlList.length));
-}
-function next() {
-	player.playVideoAt(Math.floor(Math.random()*urlList.length));
-}
-function back() {
-	player.playVideoAt(Math.floor(Math.random()*urlList.length));
+	player.cuePlaylist(urlList);
 }
 
 function shuffleArray(array) {
