@@ -13,14 +13,13 @@ function onYouTubeIframeAPIReady() {
 			color: 'white',
 			autoplay: 1,
 			loop: 0,
-			controls: 1,
+			controls: 0,
 			frameborder: 0,
 			rel: 0, 
 		},
 	});
 }  
  
-
 function getUrl(pagetoken) {
 	const params = new URLSearchParams(window.location.search); 
 	var pt = (typeof pagetoken === "undefined") ? "" :`&pageToken=${pagetoken}`,
@@ -51,12 +50,15 @@ function responseHandler(response) {
 }
 
 
-
 document.addEventListener('keydown', function(event) {
     if(event.keyCode == 37) {
         player.loadVideoById(urlList[Math.floor(Math.random() * urlList.length)]);
     }
 
+});
+
+navigator.mediaSession.setActionHandler('play', function() {
+	player.loadVideoById(urlList[Math.floor(Math.random() * urlList.length)]);
 });
 
 apiCall();
