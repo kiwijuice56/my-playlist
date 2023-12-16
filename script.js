@@ -46,7 +46,8 @@ function shuffleArray(array) {
 function onPlayerReady() {
 	console.log(urlList);
 	shuffleArray(urlList);
-	player.loadPlaylist(urlList.slice(0, 128));
+	var sample = urlList.slice(0, 64);
+	player.loadPlaylist(sample);
 }
  
 function getUrl(pagetoken) {
