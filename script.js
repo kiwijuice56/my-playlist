@@ -25,6 +25,8 @@ function onYouTubeIframeAPIReady() {
 			frameborder: 0,
 			rel: 0,
 			enablejsapi: 1,
+			listType: 'playlist',
+			list: urlList.slice(0, 128).join(','),
 			origin: 'https://kiwijuice56.github.io/my-playlist/',
 		},
 		events: {
@@ -45,17 +47,10 @@ function shuffleArray(array) {
 }
 
 function onPlayerReady() {
-	shuffleArray(urlList);
-	var sample = urlList.slice(0, 8);
-	player.loadPlaylist(sample);
+
 }
 
 function onStateChanged() {
-	if (player.getPlaylistIndex() == 4) {
-		shuffleArray(urlList);
-		var sample = urlList.slice(0, 8);
-		player.loadPlaylist(sample);
-	}
 	
 }
  
