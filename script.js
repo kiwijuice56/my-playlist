@@ -8,6 +8,8 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 var player;
 
 function onYouTubeIframeAPIReady() {
+	const params = new URLSearchParams(window.location.search); 
+    const id = params.get("id"); 
 	player = new YT.Player('player', {
 		playerVars: {
 			color: 'white',
@@ -18,6 +20,8 @@ function onYouTubeIframeAPIReady() {
 			controls: 0,
 			frameborder: 0,
 			rel: 0, 
+			'listType': 'playlist',
+            'list': id, 
 		},
 	});
 }  
@@ -53,6 +57,7 @@ function responseHandler(response) {
 
 navigator.mediaSession.setActionHandler('nexttrack', function() {
 	player.loadVideoById(urlList[Math.floor(Math.random() * urlList.length)]);
+	console.log("hi");
 });
 
 apiCall();
