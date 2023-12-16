@@ -27,7 +27,6 @@ function onYouTubeIframeAPIReady() {
 function createPlayer() {
 	shuffleArray(urlList);
 	const sample = urlList.slice(0, 64);
-	sample[0] = "iQBbnP_uutA"
 	console.log(sample);
 	player = new YT.Player('player', {
 		playerVars: {
@@ -44,6 +43,7 @@ function createPlayer() {
 		events: {
 			'onReady': onPlayerReady,
 			'onStateChange': onStateChanged,
+			'onError': onPlayerError,
 		}
 	});
 }
@@ -63,6 +63,10 @@ function onPlayerReady() {
 
 function onStateChanged() {
 	
+}
+
+function onPlayerError(){
+     location.reload();
 }
  
 function getUrl(pagetoken) {
