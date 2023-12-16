@@ -23,6 +23,16 @@ function onYouTubeIframeAPIReady() {
 		},
 	});
 }  
+
+/* Randomize array in-place using Durstenfeld shuffle algorithm */
+function shuffleArray(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+}
  
 function getUrl(pagetoken) {
 	const params = new URLSearchParams(window.location.search); 
@@ -49,13 +59,9 @@ function responseHandler(response) {
 	if (response.nextPageToken) {
 		apiCall(response.nextPageToken);
 	} else {
-		player.loadVideoById(urlList[Math.floor(Math.random() * urlList.length)]);
+		shuffleArray(urlList);
+		player.loadPlaylist(urlList, "playlist");
 	}
 }
-
-navigator.mediaSession.setActionHandler('nexttrack', function() {
-	player.loadVideoById(urlList[Math.floor(Math.random() * urlList.length)]);
-	console.log("hi");
-});
 
 apiCall();
