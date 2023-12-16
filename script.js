@@ -1,29 +1,30 @@
+// Parse data in URL
+const params = new URLSearchParams(window.location.search); 
+const playlistId = params.get("id"); 
+
+// List of videos in playlist
 const urlList = [];
 
+// Generate IFrame script and insert it into the document
 var tag = document.createElement('script');
 tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
+// YouTube player object
 var player;
 
+// Initialize the player object 
 function onYouTubeIframeAPIReady() {
-	const params = new URLSearchParams(window.location.search); 
-    const id = params.get("id"); 
 	player = new YT.Player('player', {
 		playerVars: {
 			color: 'white',
-			autoplay: 1,
-			loop: 0,
-			controls: 1,
 			frameborder: 0,
-			rel: 0, 
 			'listType': 'playlist',
 		},
 	});
 }  
 
-/* Randomize array in-place using Durstenfeld shuffle algorithm */
 function shuffleArray(array) {
     for (var i = array.length - 1; i > 0; i--) {
         var j = Math.floor(Math.random() * (i + 1));
@@ -34,15 +35,13 @@ function shuffleArray(array) {
 }
  
 function getUrl(pagetoken) {
-	const params = new URLSearchParams(window.location.search); 
-	var pt = (typeof pagetoken === "undefined") ? "" :`&pageToken=${pagetoken}`,
-	mykey = "AIzaSyDdHKpCM1frjPOPAN96rQ0vUwTtJ14L9qY",
-	playListID = params.get("id"); 
-	URL = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=${playListID}&key=${mykey}${pt}`;
-	return URL;
+	const token = (typeof pagetoken === "undefined") ? "" :`&pageToken=${pagetoken}`;
+	// Yes... this is really just public. You can generate your own for free, so be nice!
+	const key = "AIzaSyDdHKpCM1frjPOPAN96rQ0vUwTtJ14L9qY";
+	return`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=${playListID}&key=${key}${token}`;
 }
 
-function apiCall(nextPageToken) {
+function loadUrlList(nextPageToken) {
 	fetch(getUrl(nextPageToken))
 	.then(response => response.json())
 	.then(function(response) {
@@ -56,11 +55,28 @@ function responseHandler(response) {
 	}
 	
 	if (response.nextPageToken) {
-		apiCall(response.nextPageToken);
+		loadUrlList(response.nextPageToken);
 	} else {
+		// Finished loading playlist
+		localStorage.setItem(playlistId, JSON.stringify(urlList));
+		console.log("used api");
+		console.log(urlList);
 		shuffleArray(urlList);
 		player.loadPlaylist(urlList);
 	}
 }
 
-apiCall();
+function refresh() {
+	localStorage.clear();
+	location.reload();
+}
+
+if (localStorage.hasOwnProperty(playlistId)) {
+	urlList = JSON.parse(localStorage.getItem(hasOwnProperty));
+	console.log("used storage");
+	console.log(urlList);
+	shuffleArray(urlList);
+	player.loadPlaylist(urlList);
+}
+
+loadUrlList();
