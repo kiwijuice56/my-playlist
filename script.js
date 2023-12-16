@@ -27,6 +27,7 @@ function onYouTubeIframeAPIReady() {
 function createPlayer() {
 	shuffleArray(urlList);
 	const sample = urlList.slice(0, 64);
+	sample[0] = "iQBbnP_uutA"
 	console.log(sample);
 	player = new YT.Player('player', {
 		playerVars: {
