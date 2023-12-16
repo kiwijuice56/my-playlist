@@ -34,10 +34,6 @@ function onYouTubeIframeAPIReady() {
 	});
 }  
 
-function onPlayerReady() {
-	console.log(urlList);
-	player.loadPlaylist(urlList);
-}
 
 function shuffleArray(array) {
     for (var i = array.length - 1; i > 0; i--) {
@@ -46,6 +42,12 @@ function shuffleArray(array) {
         array[i] = array[j];
         array[j] = temp;
     }
+}
+
+function onPlayerReady() {
+	console.log(urlList);
+	shuffleArray(urlList);
+	player.loadPlaylist(urlList);
 }
  
 function getUrl(pagetoken) {
