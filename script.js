@@ -72,7 +72,7 @@ function refresh() {
 }
 
 if (localStorage.hasOwnProperty(playlistId)) {
-	urlList = JSON.parse(localStorage.getItem(hasOwnProperty));
+	urlList = JSON.parse(localStorage.getItem(playlistId));
 	console.log("used storage");
 	console.log(urlList);
 	shuffleArray(urlList);
