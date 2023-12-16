@@ -60,7 +60,7 @@ function responseHandler(response) {
 		apiCall(response.nextPageToken);
 	} else {
 		shuffleArray(urlList);
-		player.loadPlaylist(urlList, "playlist");
+		player.loadPlaylist({"list": urlList, "listType": "playlist"});
 	}
 }
 
