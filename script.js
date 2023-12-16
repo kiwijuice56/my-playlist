@@ -20,7 +20,6 @@ function onYouTubeIframeAPIReady() {
 		playerVars: {
 			color: 'white',
 			frameborder: 0,
-			autoplay: 1,
 			loop: 0,
 			controls: 1,
 			frameborder: 0,
