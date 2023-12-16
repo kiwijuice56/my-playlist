@@ -26,7 +26,7 @@ function onYouTubeIframeAPIReady() {
 			rel: 0,
 			enablejsapi: 1,
 			listType: 'playlist',
-			list: urlList.slice(0, 128).join(','),
+			list: urlList.slice(0, 128).join('%2C'),
 			origin: 'https://kiwijuice56.github.io/my-playlist/',
 		},
 		events: {
