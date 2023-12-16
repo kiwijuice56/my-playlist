@@ -66,6 +66,9 @@ function loadUrlList(nextPageToken) {
 
 function responseHandler(response) {
 	for (const idx in response.items) {
+		if (urlList.length == 200) {
+			return;
+		}
 		urlList.push(response.items[idx].snippet.resourceId.videoId);
 	}
 	
