@@ -3,7 +3,7 @@ const params = new URLSearchParams(window.location.search);
 const playlistId = params.get("id"); 
 
 // List of videos in playlist
-const urlList = [];
+let urlList = [];
 
 // Generate IFrame script and insert it into the document
 var tag = document.createElement('script');
