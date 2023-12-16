@@ -20,10 +20,13 @@ function onYouTubeIframeAPIReady() {
 		playerVars: {
 			color: 'white',
 			frameborder: 0,
-			playerVars: {
-				html5: 1
-			},
+			autoplay: 1,
+			loop: 0,
+			controls: 1,
+			frameborder: 0,
+			rel: 0,
 			'listType': 'playlist',
+			'list': playlistId,
 		},
 		events: {
 			'onReady': onPlayerReady,
@@ -34,9 +37,7 @@ function onYouTubeIframeAPIReady() {
 function onPlayerReady() {
 	console.log(urlList);
 	shuffleArray(urlList);
-	setTimeout(function() {
-		player.loadPlaylist(urlList);
-	}, 3000); 
+	player.loadPlaylist(urlList);
 }
 
 function shuffleArray(array) {
