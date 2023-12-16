@@ -19,7 +19,6 @@ function onYouTubeIframeAPIReady() {
 			frameborder: 0,
 			rel: 0, 
 			'listType': 'playlist',
-            'list': id, 
 		},
 	});
 }  
@@ -60,7 +59,7 @@ function responseHandler(response) {
 		apiCall(response.nextPageToken);
 	} else {
 		shuffleArray(urlList);
-		player.loadPlaylist({"list": urlList, "listType": "playlist"});
+		player.loadPlaylist(urlList);
 	}
 }
 
