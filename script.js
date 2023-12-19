@@ -41,9 +41,8 @@ function createPlayer() {
 			'playlist': sample.join(','),
 		},
 		events: {
-			'onReady': onPlayerReady,
 			'onStateChange': onStateChanged,
-			'onError': onPlayerError,
+			'onError': onError,
 		}
 	});
 	player.playVideoAt(0);
@@ -58,16 +57,16 @@ function shuffleArray(array) {
     }
 }
 
-function onPlayerReady() {
-
-}
-
 function onStateChanged() {
-	
+	if (player.getPlayerState() == 1) {
+		document.getElementById("icon").setAttribute("href", "playing.png");
+	} else if (player.getPlayerState() == 0 || player.getPlayerState() == 2) {
+		document.getElementById("icon").setAttribute("href", "paused.png");
+	}
 }
 
-function onPlayerError(){
-     location.reload();
+function onError(){
+    location.reload();
 }
  
 function getUrl(pagetoken) {

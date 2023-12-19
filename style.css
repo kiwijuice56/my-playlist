@@ -1,0 +1,77 @@
+body {
+	margin: auto;
+	background: #1f1f1f;
+	color: #ababa6;
+	font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+	font-size: 16px;
+	line-height: 2.1; 
+	padding-top: 12px; 
+	width: 100%;
+}
+
+code {
+	background: #0f0e0e;
+}
+
+button {
+	flex: 1; 
+	height: 48px; 
+	color: #ababa6; 
+	background-color: #0c0c0c; 
+	border: none; 
+	border-radius: 4px;
+}
+
+button:hover {
+	color: #FFF; 
+	background-color: #292928;
+}
+
+button:active {
+	color: #666; 
+	background-color: #0d0d0c;
+}
+
+#help {
+	max-width: 60%; 
+	margin: auto;
+}
+
+#video {
+	margin: auto;
+	width: 480px;
+}
+
+#player {
+	width: 480px; 
+	height: 270px; 
+	display: block; 
+	padding-bottom: 12px;
+}
+
+#buttonHolder {
+	display: flex; 
+	padding-left: 12px; 
+	padding-right: 12px;
+}
+
+#back {
+	margin-right: 12px;
+}
+
+footer {
+	padding-bottom: 2em;
+}
+
+a {
+	color: #aaaaa6;
+}
+
+@media (max-width: 800px) {
+	#help {
+		padding-left: 15%;
+		padding-right: 15%;
+		max-width: 100%; 
+		margin: auto;
+	}
+}

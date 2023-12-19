@@ -2,24 +2,8 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        body {margin: auto; background: #1f1f1f; color: #ababa6; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.9; padding-top: 12px; width: 100%;}
-        code {background: #0f0e0e;}
-		
-		button {flex: 1; height: 48px; color: #ababa6; background-color: #0c0c0c; border: none; border-radius: 4px;}
-		button:hover {color: #FFF; background-color: #292928;}
-		button:active {color: #666; background-color: #0d0d0c;}
-		
-		#help {max-width: 73%; margin: auto;}
-		#video {margin: auto; width: 480px;}
-		#player {width: 480px; height: 270px; display: block; padding-bottom: 12px;}
-		#buttonHolder {display: flex; padding-left: 12px; padding-right: 12px;}
-		
-		#back {margin-right: 12px;}
-		footer {padding-bottom: 1em;}
-		
-		a {color: #aaaaa6;}
-    </style>
+    <link rel="stylesheet" href="style.css">
+	<link id="icon" rel="icon" href="paused.png">
     <title>my-playlist</title>
 </head>
 <body>
@@ -28,15 +12,17 @@
 		<div id='buttonHolder'><button id='back' onclick="back()"><< back</button> <button id='next' onclick="next()"> next >></button> </div>
 	</div>
 	<div id='help'>
-		<h1>my-playlist</h1>
-		<p>a minimal youtube playlist controller. copy this url: <code>https://kiwijuice56.github.io/my-playlist/?id=[PLAYLIST_ID]</code> and replace <code>[PLAYLIST_ID]</code> with the text after <code>list=</code> in your youtube playlist url. after entering your url, you can play, pause, and skip using keyboard controls or the buttons below the video. you can also bookmark the url to save your settings. enable <code>desktop site</code> on firefox mobile to stop audio from automatically pausing when switching tabs or to allow for video looping. after the first load of this page, your playlist is saved in local storage. currently, only 128 songs are loaded at a time, but a new sample can be loaded by refreshing the page. for some reason, the youtube player often crashes when first loading on firefox so you may see it attempt to refresh the page many times. </p>
+		<h2>my-playlist</h2>
+		<p>A minimal YouTube playlist shuffler. </p>
 		
-		<p> updated your playlist? <a onclick="refresh()" href="#">click here to force refresh.</a>
+		<p> Copy this URL: <code>https://kiwijuice56.github.io/my-playlist/?id=[PLAYLIST_ID]</code> and replace <code>[PLAYLIST_ID]</code> with the text after <code>list=</code> in your YouTube playlist URL. The resulting URL will download the collection of video ID's to your local storage and load a shuffled sample (of size 128 due to API limitations) every time you refresh the page. You can bookmark the URL for quick access to your playlist. Enable <code>desktop site</code> on firefox mobile to stop audio from pausing when switching tabs. Click <a onclick="refresh()" href="#">here</a> to refresh your playlist after adding/removing songs. Due to a YouTube bug, you may notice the page refresh itself a few times when first loading a playlist.
+		</p>
 		
-		<p>zero data is collected from users. this website was made to remove the bloat of the youtube website for playlists and to fix the incredibly broken shuffle feature. </p>
+		<p>Zero data is collected from users. This website was made to remove the bloat of the YouTube website for playing music in the background while also fixing the broken shuffle feature. </p>
 		
+		<hr color="#ababa6">
 		<footer>
-			<a href="https://github.com/kiwijuice56">github</a>
+			<p> Eric Alfaro | <a href="https://github.com/kiwijuice56/my-playlist">GitHub Repository</a> </p>
 		</footer>
 	</div>
 	<script src="script.js"></script> 
