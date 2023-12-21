@@ -50,7 +50,7 @@ button:active {
 }
 
 #buttonHolder {
-	display: flex; 
+	display: none; 
 	padding-left: 12px; 
 	padding-right: 12px;
 }
@@ -73,5 +73,9 @@ a {
 		padding-right: 15%;
 		max-width: 100%; 
 		margin: auto;
+	}
+	
+	#buttonHolder {
+		display: flex; 
 	}
 }

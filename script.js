@@ -26,7 +26,7 @@ function onYouTubeIframeAPIReady() {
 
 function createPlayer() {
 	shuffleArray(urlList);
-	const sample = urlList.slice(0, 128);
+	const sample = urlList.slice(0, 200);
 	console.log(sample);
 	player = new YT.Player('player', {
 		playerVars: {
@@ -66,7 +66,7 @@ function onStateChanged() {
 }
 
 function onError(){
-    location.reload();
+    //location.reload();
 }
  
 function getUrl(pagetoken) {
