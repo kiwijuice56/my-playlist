@@ -66,7 +66,7 @@ function onStateChanged() {
 }
 
 function onError(){
-    //location.reload();
+    location.reload();
 }
  
 function getUrl(pagetoken) {
