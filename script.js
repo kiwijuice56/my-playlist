@@ -1,6 +1,7 @@
 // Parse data in URL
-const params = new URLSearchParams(window.location.search); 
-const playlistId = params.get("id"); 
+const params = new URLSearchParams(window.location.search);
+const playlistId = params.get("id");
+const shuffle_requested = params.has("shuffle") ? params.get("shuffle") : "yes";
 
 // List of videos in playlist
 let urlList = [];
@@ -14,7 +15,7 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 // YouTube player object
 var player;
 
-// Initialize the player object 
+// Initialize the player object
 function onYouTubeIframeAPIReady() {
 	if (localStorage.hasOwnProperty(playlistId)) {
 		urlList = JSON.parse(localStorage.getItem(playlistId));
@@ -22,10 +23,13 @@ function onYouTubeIframeAPIReady() {
 	} else {
 		loadUrlList();
 	}
-}  
+}
 
 function createPlayer() {
-	shuffleArray(urlList);
+	console.log(urlList.length);
+	if (shuffle_requested === "yes") {
+		shuffleArray(urlList);
+	}
 	const sample = urlList.slice(0, 200);
 	console.log(sample);
 	player = new YT.Player('player', {
@@ -45,7 +49,6 @@ function createPlayer() {
 			'onError': onError,
 		}
 	});
-	player.playVideoAt(0);
 }
 
 function shuffleArray(array) {
@@ -65,15 +68,13 @@ function onStateChanged() {
 	}
 }
 
-function onError(){
+function onError() {
     location.reload();
 }
- 
+
 function getUrl(pagetoken) {
-	const token = (typeof pagetoken === "undefined") ? "" :`&pageToken=${pagetoken}`;
-	// Yes... this is really just public. You can generate your own for free, so be nice!
-	const k = "AIzaSyDdHKpCM1frjPOPAN96rQ0vUwTtJ14L9qY";
-	return`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=${playlistId}&key=${k}${token}`;
+	const token = (typeof pagetoken === "undefined") ? "" :`&page_token=${pagetoken}`;
+	return`https://122412240.xyz/my-playlist/playlist_id=${playlistId}${token}`;
 }
 
 function loadUrlList(nextPageToken) {
@@ -88,7 +89,7 @@ function responseHandler(response) {
 	for (const idx in response.items) {
 		urlList.push(response.items[idx].snippet.resourceId.videoId);
 	}
-	
+
 	if (response.nextPageToken) {
 		loadUrlList(response.nextPageToken);
 	} else {
