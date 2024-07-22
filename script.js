@@ -38,7 +38,6 @@ function createPlayer() {
 			frameborder: 0,
 			loop: 0,
 			controls: 1,
-			frameborder: 0,
 			rel: 0,
 			enablejsapi: 1,
 			host: 'https://www.youtube-nocookie.com',
@@ -69,12 +68,12 @@ function onStateChanged() {
 }
 
 function onError() {
-    location.reload();
+    //location.reload();
 }
 
 function getUrl(pagetoken) {
 	const token = (typeof pagetoken === "undefined") ? "" :`&page_token=${pagetoken}`;
-	return`https://122412240.xyz/my-playlist/playlist_id=${playlistId}${token}`;
+	return`https://122412240.xyz/my-playlist/?playlist_id=${playlistId}${token}`;
 }
 
 function loadUrlList(nextPageToken) {
