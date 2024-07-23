@@ -40,7 +40,6 @@ function createPlayer() {
 			controls: 1,
 			rel: 0,
 			enablejsapi: 1,
-			origin: "https://kiwijuice56.github.io",
 			host: 'https://www.youtube-nocookie.com',
 			'playlist': sample.join(','),
 		},
@@ -69,7 +68,7 @@ function onStateChanged() {
 }
 
 function onError() {
-    //location.reload();
+    location.reload();
 }
 
 function getUrl(pagetoken) {
