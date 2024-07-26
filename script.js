@@ -73,7 +73,7 @@ function onError() {
 
 function getUrl(pagetoken) {
 	const token = (typeof pagetoken === "undefined") ? "" :`&page_token=${pagetoken}`;
-	return`https://122412240.xyz/my-playlist/?playlist_id=${playlistId}${token}`;
+	return 'https://corsproxy.io/?' + encodeURIComponent(`https://122412240.xyz/my-playlist/?playlist_id=${playlistId}${token}`);
 }
 
 function loadUrlList(nextPageToken) {
