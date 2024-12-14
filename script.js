@@ -41,7 +41,7 @@ function createPlayer() {
 			rel: 0,
 			enablejsapi: 1,
 			host: 'https://www.youtube-nocookie.com',
-			'playlist': sample.join(','),
+			playlist: sample.join(','),
 		},
 		events: {
 			'onStateChange': onStateChanged,
@@ -73,7 +73,7 @@ function onError() {
 
 function getUrl(pagetoken) {
 	const token = (typeof pagetoken === "undefined") ? "" :`&page_token=${pagetoken}`;
-	return 'https://corsproxy.io/?' + encodeURIComponent(`https://122412240.xyz/my-playlist/?playlist_id=${playlistId}${token}`);
+	return 'https://corsproxy.io/?' + (`https://122412240.xyz/my-playlist/?playlist_id=${playlistId}${token}`);
 }
 
 function loadUrlList(nextPageToken) {
@@ -97,7 +97,6 @@ function responseHandler(response) {
 		createPlayer();
 	}
 }
-
 
 function refresh() {
 	localStorage.clear();
